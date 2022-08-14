@@ -1,0 +1,25 @@
+{
+  "name": "instituciones",
+  "version": "1.0.0",
+  "description": "Módulo de instituciones de salud",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Bruno PM",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^4.2.1",
+    "amqplib": "^0.10.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19",
+    "prisma": "^4.2.1"
+  }
+}
