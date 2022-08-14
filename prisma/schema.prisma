@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Institucion {
+    id            Int       @id @default(autoincrement())
+    nombre        String
+    departamento  String
+    provincia     String
+    distrito      String
+    direccion     String
+    categoria     Categoria
+    fechaRegistro DateTime  @default(now())
+    medicos       Medico[]
+}
+
+model Medico {
+    id             Int          @id @default(autoincrement())
+    dni            String       @db.VarChar(8)
+    apellidos      String
+    nombre         String
+    sexo           Sexo
+    institucionId  Int
+    institucion    Institucion  @relation(fields: [institucionId], references: [id])
+    areaId         Int
+    area           Area         @relation(fields: [areaId], references: [id])
+    especialidadId Int
+    especialidad   Especialidad @relation(fields: [especialidadId], references: [id])
+    telefono       String       @db.VarChar(9)
+}
+
+model Area {
+    id      Int      @id @default(autoincrement())
+    nombre  String
+    medicos Medico[]
+}
+
+model Especialidad {
+    id      Int      @id @default(autoincrement())
+    nombre  String
+    medicos Medico[]
+}
+
+enum Sexo {
+    masculino
+    femenino
+}
+
+enum Categoria {
+    publico
+    privado
+}
